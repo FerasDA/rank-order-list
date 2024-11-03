@@ -3,6 +3,7 @@ import InputForm from "./components/InputForm";
 import CategoryForm from "./components/CategoryForm";
 import RankingForm from "./components/RankingForm";
 import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
   const [programs, setPrograms] = useState([]);
@@ -16,6 +17,7 @@ function App() {
       {programs.length > 0 && categories.length > 0 && (
         <RankingForm programs={programs} categories={categories} />
       )}
+      <Footer />
     </div>
   );
 }
