@@ -1,0 +1,44 @@
+.explanation-container {
+  padding: 20px;
+  background-color: #f0f0f5;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  font-family: "Arial", sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+
+.explanation-container h2 {
+  text-align: center;
+  color: "#inherit";
+  margin-bottom: 15px;
+}
+
+.explanation-container p {
+  margin-bottom: 15px;
+}
+
+.equation {
+  font-size: 18px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .explanation-container {
+    padding: 10px;
+  }
+
+  .explanation-container h2 {
+    font-size: 20px;
+  }
+
+  .explanation-container p {
+    font-size: 16px;
+  }
+
+  .equation {
+    font-size: 10px;
+  }
+}
