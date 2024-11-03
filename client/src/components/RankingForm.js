@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 const RankingForm = ({ programs, categories }) => {
   const [rankings, setRankings] = useState({});
+  const [overallScores, setOverallScores] = useState([]);
 
   useEffect(() => {
     const initialRankings = {};
     categories.forEach((category) => {
-      initialRankings[category.name] = programs.map(() => null); 
+      initialRankings[category.name] = programs.map(() => null);
     });
     setRankings(initialRankings);
   }, [programs, categories]);
@@ -16,6 +17,28 @@ const RankingForm = ({ programs, categories }) => {
     updatedRankings[category][programIndex] = parseInt(rank, 10);
     setRankings(updatedRankings);
   };
+
+  useEffect(() => {
+    const maxWeightedSum = categories.reduce((sum, category) => {
+      return sum + (programs.length * (category.weight / 100));
+    }, 0);
+
+    const scores = programs.map((_, programIndex) => {
+      let weightedRankSum = 0;
+      categories.forEach((category) => {
+        const rank = rankings[category.name]?.[programIndex];
+        if (rank !== null && !isNaN(rank)) {
+          weightedRankSum += (rank / programs.length) * (category.weight / 100);
+        }
+      });
+      const normalizedScore = (1 - weightedRankSum / maxWeightedSum) * 100;
+      return { program: programs[programIndex], score: normalizedScore };
+    });
+
+    // Sort programs by score in descending order (higher is better)
+    scores.sort((a, b) => b.score - a.score);
+    setOverallScores(scores);
+  }, [rankings, categories, programs]);
 
   return (
     <div>
@@ -45,6 +68,15 @@ const RankingForm = ({ programs, categories }) => {
           </ul>
         </div>
       ))}
+
+      <h2>Overall Scores (Out of 100)</h2>
+      <ul>
+        {overallScores.map((item, index) => (
+          <li key={index}>
+            {item.program}: {item.score.toFixed(2)}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
