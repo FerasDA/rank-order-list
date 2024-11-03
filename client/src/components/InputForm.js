@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "./InputForm.css";
 
 const InputForm = ({ setPrograms }) => {
-  const [programName, setProgramName] = useState('');
+  const [programName, setProgramName] = useState("");
   const [programList, setProgramList] = useState([]);
 
   const addProgram = () => {
-    if (programName.trim() === '') return;
+    if (programName.trim() === "") return;
     const updatedList = [...programList, programName];
     setProgramList(updatedList);
-    setPrograms(updatedList); 
-    setProgramName('');
+    setPrograms(updatedList);
+    setProgramName("");
   };
 
   const removeProgram = (index) => {
     const updatedList = programList.filter((_, i) => i !== index);
     setProgramList(updatedList);
-    setPrograms(updatedList); 
+    setPrograms(updatedList);
   };
 
   return (
@@ -30,11 +31,16 @@ const InputForm = ({ setPrograms }) => {
       <button onClick={addProgram}>Add Program</button>
 
       <h3>Program List</h3>
-      <ul>
+      <ul className="program-list">
         {programList.map((program, index) => (
-          <li key={index}>
-            {program}{' '}
-            <button onClick={() => removeProgram(index)}>Remove</button>
+          <li className="program-item" key={index}>
+            {program}{" "}
+            <button
+              className="remove-button"
+              onClick={() => removeProgram(index)}
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>

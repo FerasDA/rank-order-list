@@ -1,8 +1,8 @@
-// src/App.js
-import React, { useState } from 'react';
-import InputForm from './components/InputForm';
-import CategoryForm from './components/CategoryForm';
-import RankingForm from './components/RankingForm';
+import React, { useState } from "react";
+import InputForm from "./components/InputForm";
+import CategoryForm from "./components/CategoryForm";
+import RankingForm from "./components/RankingForm";
+import "./App.css";
 
 function App() {
   const [programs, setPrograms] = useState([]);

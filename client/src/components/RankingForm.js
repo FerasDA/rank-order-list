@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import "./RankingForm.css";
 
 const RankingForm = ({ programs, categories }) => {
   const [rankings, setRankings] = useState({});
@@ -20,7 +21,7 @@ const RankingForm = ({ programs, categories }) => {
 
   useEffect(() => {
     const maxWeightedSum = categories.reduce((sum, category) => {
-      return sum + (programs.length * (category.weight / 100));
+      return sum + programs.length * (category.weight / 100);
     }, 0);
 
     const scores = programs.map((_, programIndex) => {
@@ -41,19 +42,25 @@ const RankingForm = ({ programs, categories }) => {
   }, [rankings, categories, programs]);
 
   return (
-    <div>
+    <div className="container">
       <h2>Rank Programs by Category</h2>
       {categories.map((category, catIndex) => (
-        <div key={catIndex}>
-          <h3>{category.name} (Weight: {category.weight}%)</h3>
+        <div key={catIndex} className="category">
+          <h3>
+            {category.name} (Weight: {category.weight}%)
+          </h3>
           <ul>
             {programs.map((program, programIndex) => (
               <li key={programIndex}>
                 {program} - Rank:
                 <select
-                  value={rankings[category.name]?.[programIndex] || ''}
+                  value={rankings[category.name]?.[programIndex] || ""}
                   onChange={(e) =>
-                    handleRankChange(category.name, programIndex, e.target.value)
+                    handleRankChange(
+                      category.name,
+                      programIndex,
+                      e.target.value
+                    )
                   }
                 >
                   <option value="">Select Rank</option>
@@ -69,14 +76,16 @@ const RankingForm = ({ programs, categories }) => {
         </div>
       ))}
 
-      <h2>Overall Scores (Out of 100)</h2>
-      <ul>
-        {overallScores.map((item, index) => (
-          <li key={index}>
-            {item.program}: {item.score.toFixed(2)}
-          </li>
-        ))}
-      </ul>
+      <div className="overall-scores">
+        <h2>Overall Scores (Out of 100)</h2>
+        <ul>
+          {overallScores.map((item, index) => (
+            <li key={index}>
+              {item.program}: {item.score.toFixed(2)}%
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
