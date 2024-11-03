@@ -81,7 +81,7 @@ const RankingForm = ({ programs, categories }) => {
         <ul>
           {overallScores.map((item, index) => (
             <li key={index}>
-              {item.program}: {item.score.toFixed(2)}%
+              {index +1}. {item.program}: {item.score.toFixed(2)}
             </li>
           ))}
         </ul>

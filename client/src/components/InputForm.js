@@ -21,7 +21,11 @@ const InputForm = ({ setPrograms }) => {
 
   return (
     <div>
-      <h2>Program Input</h2>
+      <h2>Programs to Rank</h2>
+      <p>
+        Enter a list of programs you want to rank based on categories you
+        provide
+      </p>
       <input
         type="text"
         value={programName}

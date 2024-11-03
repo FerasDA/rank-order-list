@@ -34,7 +34,16 @@ const CategoryForm = ({ setCategories }) => {
 
   return (
     <div>
-      <h2>Category Input</h2>
+      <h2>Ranking Categories</h2>
+      <p>
+        Enter a list of categories you want to use to help you rank the program
+        and the weight they carry
+      </p>
+      <p>
+        For example, if you want to rank programs based on their cost of living,
+        reputation, and location, you can add three categories with different
+        weights
+      </p>
       <input
         type="text"
         value={categoryName}
