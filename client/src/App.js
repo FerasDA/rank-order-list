@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Order List Ranking Tool</h1>
+      <h1>Rank List Tool</h1>
       <Explanation />
       <InputForm setPrograms={setPrograms} />
       <CategoryForm setCategories={setCategories} />
