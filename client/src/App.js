@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import InputForm from './components/InputForm';
+import CategoryForm from './components/CategoryForm';
+import RankingForm from './components/RankingForm';
 
 function App() {
+  const [programs, setPrograms] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Program Ranking Tool</h1>
+      <InputForm setPrograms={setPrograms} />
+      <CategoryForm setCategories={setCategories} />
+      {programs.length > 0 && categories.length > 0 && (
+        <RankingForm programs={programs} categories={categories} />
+      )}
     </div>
   );
 }
